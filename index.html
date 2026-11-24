@@ -81,6 +81,29 @@
     nav a { font-size: 0.82rem; }
 }
 
+.mystery-glow {
+    position: relative;
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent) 0%, #ffffff 25%, #c084fc 50%, var(--accent) 75%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: mysteryShine 2.4s linear infinite, mysteryPulse 2s ease-in-out infinite;
+}
+@keyframes mysteryShine {
+    0% { background-position: 200% center; }
+    100% { background-position: 0% center; }
+}
+@keyframes mysteryPulse {
+    0%, 100% { box-shadow: 0 0 6px rgba(0, 240, 255, 0.35), inset 0 0 4px rgba(0, 240, 255, 0.2); }
+    50% { box-shadow: 0 0 18px rgba(0, 240, 255, 0.9), inset 0 0 8px rgba(192, 132, 252, 0.45); }
+}
+
+
     </style>
 </head>
 <body>
@@ -103,6 +126,7 @@
                 <li><a href="#eszkozok" data-hu="Eszközök" data-en="Equipment">Eszközök</a></li>
                 <li><a href="#esemenyek" data-hu="Események" data-en="Events">Események</a></li>
                 <li><a href="#erdekessegek" data-hu="Érdekességek" data-en="Curiosities">Érdekességek</a></li>
+                <li><a href="#rejtelyek" class="mystery-glow" data-hu="Kozmikus Rejtélyek" data-en="Cosmic Mysteries">Kozmikus Rejtélyek</a></li>
                 <li><a href="#magamrol" data-hu="Magamról" data-en="About Me">Magamról</a></li>
                 <li><a href="https://facebook.com" target="_blank" class="social-link">Facebook</a></li>
                 <li><button class="lang-btn" id="soundToggle" onclick="toggleSpaceAudio()" data-hu="Hang: KI" data-en="Sound: OFF">Hang: KI</button></li>
@@ -194,25 +218,46 @@
 </section>
 
 <section id="esemenyek">
-    <h2 data-hu="Csillagászati események & Észlelési tervek" data-en="Astronomical Events & Observation Plans">Csillagászati események & Észlelési tervek</h2>
+    <h2 data-hu="Csillagászati eseménynaptár (2026–2027)" data-en="Astronomical Event Calendar (2026–2027)">Csillagászati eseménynaptár (2026–2027)</h2>
     <div class="cards-grid">
 
-        <!-- 1. ESEMÉNY KÁRTYA -->
+        <!-- 2026. DECEMBER -->
         <div class="info-card">
-            <h3 data-hu="2026. december – Geminidák meteorraj és a téli égbolt" data-en="December 2026 – Geminids Meteor Shower & Winter Sky">2026. december – Geminidák meteorraj és a téli égbolt</h3>
-            <p data-hu="Az év egyik legbőségesebb meteorraja, a Geminidák december 13–14. éjszakáján éri el a maximumát. Emellett a téli hónapokban kerülnek ideális helyzetbe az Orion csillagkép látványos ködei (M42, Lófej-köd) és a Rozetta-köd is." data-en="One of the richest meteor showers of the year, the Geminids, peaks on the night of December 13–14. Meanwhile, winter brings prime imaging conditions for the iconic nebulae of Orion (M42, Horsehead Nebula) and the Rosette Nebula.">Az év egyik legbőségesebb meteorraja, a Geminidák december 13–14. éjszakáján éri el a maximumát. Emellett a téli hónapokban kerülnek ideális helyzetbe az Orion csillagkép látványos ködei (M42, Lófej-köd) és a Rozetta-köd is.</p>
+            <h3 data-hu="2026. December – Geminidák és Szuperhold" data-en="December 2026 – Geminids & Supermoon">2026. December – Geminidák és Szuperhold</h3>
+            <ul>
+                <li data-hu="Dec. 13–14. (éjszaka): Geminidák meteorraj maximuma – Az év egyik leglátványosabb rajából akár óránként 100–120 lassú, fényes meteor is felvillanhat." data-en="Dec 13–14 (Night): Geminids meteor shower peak – Up to 100–120 bright, slow meteors per hour under dark skies.">Dec. 13–14. (éjszaka): Geminidák meteorraj maximuma – Az év egyik leglátványosabb rajából akár óránként 100–120 lassú, fényes meteor is felvillanhat.</li>
+                <li data-hu="Dec. 21. (21:50): Téli napforduló – Az év leghosszabb éjszakája, ideális a többórás mély-ég (Orion-köd, Lófej-köd) fotózáshoz." data-en="Dec 21 (21:50 CET): Winter Solstice – The longest night of the year, ideal for multi-hour deep-sky imaging (Orion & Horsehead Nebulae).">Dec. 21. (21:50): Téli napforduló – Az év leghosszabb éjszakája, ideális a többórás mély-ég (Orion-köd, Lófej-köd) fotózáshoz.</li>
+                <li data-hu="Dec. 24.: Karácsonyi Szuperhold – Az év legnagyobb és legfényesebb teliholdja, amely földközelben ragyog az égen." data-en="Dec 24: Christmas Supermoon – The largest and brightest full moon of the year near perigee.">Dec. 24.: Karácsonyi Szuperhold – Az év legnagyobb és legfényesebb teliholdja, amely földközelben ragyog az égen.</li>
+            </ul>
         </div>
 
-        <!-- 2. ESEMÉNY KÁRTYA -->
+        <!-- 2027. JANUÁR – FEBRUÁR -->
         <div class="info-card">
-            <h3 data-hu="2027. tavasz – A galaxisok évada" data-en="Spring 2027 – Galaxy Season">2027. tavasz – A galaxisok évada</h3>
-            <p data-hu="Január elején a Quadrantidák meteorrajjal indul az év, tavasszal pedig a Tejút sávja helyett a távoli galaxishalmazok veszik át a főszerepet: az Oroszlán-hármas (Leo Triplet), a Szűz-halmaz és a Örvény-galaxis (M51) kerülnek a távcsövek célkeresztjébe." data-en="The year kicks off with the Quadrantids meteor shower in early January, followed by spring galaxy season: the Leo Triplet, the Virgo Cluster, and the Whirlpool Galaxy (M51) take center stage.">Január elején a Quadrantidák meteorrajjal indul az év, tavasszal pedig a Tejút sávja helyett a távoli galaxishalmazok veszik át a főszerepet: az Oroszlán-hármas (Leo Triplet), a Szűz-halmaz és a Örvény-galaxis (M51) kerülnek a távcsövek célkeresztjébe.</p>
+            <h3 data-hu="2027. Január–Február – Quadrantidák és téli bolygók" data-en="Jan–Feb 2027 – Quadrantids & Winter Planets">2027. Január–Február – Quadrantidák és téli bolygók</h3>
+            <ul>
+                <li data-hu="Jan. 3–4.: Quadrantidák meteorraj – Rövid, de intenzív maximum, tűzgömbökkel." data-en="Jan 3–4: Quadrantids meteor shower – A brief but intense peak known for bright fireballs.">Jan. 3–4.: Quadrantidák meteorraj – Rövid, de intenzív maximum, tűzgömbökkel.</li>
+                <li data-hu="Január vége: Mars és Jupiter megfigyelése – A két óriásbolygó magasan jár az éjszakai égbolton, távcsővel jól láthatók a felhősávok és holdak." data-en="Late January: Mars & Jupiter high overhead – Ideal telescope views of cloud bands and Galilean moons.">Január vége: Mars és Jupiter megfigyelése – A két óriásbolygó magasan jár az éjszakai égbolton, távcsővel jól láthatók a felhősávok és holdak.</li>
+                <li data-hu="Feb. 20. (hajnal): Hold–Jupiter–Mars közeli együttállás az ikrek csillagkép közelében." data-en="Feb 20 (Dawn): Close conjunction of the Moon, Jupiter, and Mars near Gemini.">Feb. 20. (hajnal): Hold–Jupiter–Mars közeli együttállás az ikrek csillagkép közelében.</li>
+            </ul>
         </div>
 
-        <!-- 3. ESEMÉNY KÁRTYA -->
+        <!-- 2027. MÁRCIUS – ÁPRILIS -->
         <div class="info-card">
-            <h3 data-hu="2027. nyár – Perseidák és a nyári Tejút" data-en="Summer 2027 – Perseids & Summer Milky Way">2027. nyár – Perseidák és a nyári Tejút</h3>
-            <p data-hu="A nyári hónapokban a Hattyú és a Nyilas csillagkép sűrű emissziós ködei (Észak-Amerika-köd, Pelikán-köd, Lagúna-köd) kínálnak hálás témát Duo-Band szűrővel, augusztus közepén pedig a Perseidák hullócsillagait vadásszuk a miskolci és bükki égbolt alatt." data-en="During summer, dense emission nebulae in Cygnus and Sagittarius (North America, Pelican, and Lagoon Nebulae) offer rich Duo-Band targets, culminating in mid-August with the Perseids meteor shower under the dark skies of Miskolc and the Bükk mountains.">A nyári hónapokban a Hattyú és a Nyilas csillagkép sűrű emissziós ködei (Észak-Amerika-köd, Pelikán-köd, Lagúna-köd) kínálnak hálás témát Duo-Band szűrővel, augusztus közepén pedig a Perseidák hullócsillagait vadásszuk a miskolci és bükki égbolt alatt.</p>
+            <h3 data-hu="2027. Március–Április – Galaxisvadászat és Lyridák" data-en="Mar–Apr 2027 – Galaxy Season & Lyrids">2027. Március–Április – Galaxisvadászat és Lyridák</h3>
+            <ul>
+                <li data-hu="Március 20.: Tavaszi napéjegyenlőség – Megnyílik az ablak a távoli galaxishalmazok (Leo Triplet, M51, M81–M82) felé." data-en="March 20: Spring Equinox – Prime window opens for distant galaxy clusters (Leo Triplet, M51, M81–M82).">Március 20.: Tavaszi napéjegyenlőség – Megnyílik az ablak a távoli galaxishalmazok (Leo Triplet, M51, M81–M82) felé.</li>
+                <li data-hu="Ápr. 22–23.: Lyridák meteorraj maximuma – Gyors, fényes meteorok a Lant csillagkép irányából, szinte holdmentes égen." data-en="Apr 22–23: Lyrids meteor shower peak – Fast, bright meteors radiating from Lyra under near-moonless skies.">Ápr. 22–23.: Lyridák meteorraj maximuma – Gyors, fényes meteorok a Lant csillagkép irányából, szinte holdmentes égen.</li>
+            </ul>
+        </div>
+
+        <!-- 2027. MÁJUS – AUGUSZTUS -->
+        <div class="info-card">
+            <h3 data-hu="2027. Május–Augusztus – Perseidák és a nyári Tejút" data-en="May–Aug 2027 – Perseids & Summer Milky Way">2027. Május–Augusztus – Perseidák és a nyári Tejút</h3>
+            <ul>
+                <li data-hu="Június–Július: A Tejút magja és a Hattyú ködei – Ideális időszak a Duo-Band szűrős ködfotózáshoz (Észak-Amerika-, Pelikán- és Fátyol-köd)." data-en="June–July: Milky Way core & Cygnus nebulae – Prime Duo-Band season for North America, Pelican, and Veil Nebulae.">Június–Július: A Tejút magja és a Hattyú ködei – Ideális időszak a Duo-Band szűrős ködfotózáshoz (Észak-Amerika-, Pelikán- és Fátyol-köd).</li>
+                <li data-hu="Aug. 2.: Részleges napfogyatkozás (Magyarországról is megfigyelhető napközben, kizárólag hitelesített napszűrővel!)." data-en="Aug 2: Partial Solar Eclipse (visible from Hungary during daytime – use certified solar filters only!).">Aug. 2.: Részleges napfogyatkozás (Magyarországról is megfigyelhető napközben, kizárólag hitelesített napszűrővel!).</li>
+                <li data-hu="Aug. 12–13.: Perseidák meteorraj – A nyár legjobban várt hullócsillag-zápora, amelyet Miskolc és a Bükk sötét ege alól követünk." data-en="Aug 12–13: Perseids meteor shower – Summer's most anticipated shooting star display observed from Miskolc and the Bükk.">Aug. 12–13.: Perseidák meteorraj – A nyár legjobban várt hullócsillag-zápora, amelyet Miskolc és a Bükk sötét ege alól követünk.</li>
+            </ul>
         </div>
 
     </div>
@@ -236,21 +281,94 @@
     </div>
 </section>
 
+<section id="rejtelyek">
+    <h2 data-hu="Kozmikus Rejtélyek & Meghökkentő Felfedezések" data-en="Cosmic Mysteries & Mind-Blowing Discoveries">Kozmikus Rejtélyek & Meghökkentő Felfedezések</h2>
+    <div class="cards-grid">
+
+        <!-- 1. MEGHÖKKENTŐ TÉNY: VÁNDORLÓ FEKETE LYUKAK -->
+        <div class="info-card">
+            <h3 data-hu="Magányos, száguldó fekete lyukak a Tejútrendszerben" data-en="Rogue Black Holes Hurtling Through the Milky Way">Magányos, száguldó fekete lyukak a Tejútrendszerben</h3>
+            <p data-hu="Nem minden fekete lyuk ül nyugodtan egy galaxis közepén: csillagászok olyan elszabadult, csillagtömegű fekete lyukakat azonosítottak gravitációs mikrolencse-hatással, amelyek több száz kilométer/másodperces sebességgel száguldanak át láthatatlanul a csillagközi téren, és csak akkor árulják el magukat, amikor elhaladnak egy távoli csillag előtt és meghajlítják annak fényét." data-en="Not all black holes sit quietly at galactic centers: astronomers have detected rogue stellar-mass black holes hurtling invisibly through interstellar space at hundreds of kilometers per second, revealing themselves only when they bend the light of a background star.">Nem minden fekete lyuk ül nyugodtan egy galaxis közepén: csillagászok olyan elszabadult, csillagtömegű fekete lyukakat azonosítottak gravitációs mikrolencse-hatással, amelyek több száz kilométer/másodperces sebességgel száguldanak át láthatatlanul a csillagközi téren, és csak akkor árulják el magukat, amikor elhaladnak egy távoli csillag előtt és meghajlítják annak fényét.</p>
+        </div>
+
+        <!-- 2. MEGHÖKKENTŐ TÉNY: JAMES WEBB LEGRÉGEBBI GALAXISAI -->
+        <div class="info-card">
+            <h3 data-hu="Túl korán született óriásgalaxisok a James Webb szemével" data-en="Impossible Early Galaxies Spotted by James Webb">Túl korán született óriásgalaxisok a James Webb szemével</h3>
+            <p data-hu="A James Webb űrtávcső olyan hatalmas, rendezett szerkezetű galaxisokat fedezett fel mindössze 300–400 millió évvel az Ősrobbanás utáni időszakból, amelyeknek a korábbi elméletek szerint még létezniük sem szabadott volna. Ez a felfedezés alapjaiban írja át az univerzum korai fejlődéséről alkotott tudásunkat." data-en="The James Webb Space Telescope has discovered massive, structured galaxies existing just 300–400 million years after the Big Bang—objects that shouldn't have had enough time to form according to previous cosmological models, forcing scientists to rethink the early universe.">A James Webb űrtávcső olyan hatalmas, rendezett szerkezetű galaxisokat fedezett fel mindössze 300–400 millió évvel az Ősrobbanás utáni időszakból, amelyeknek a korábbi elméletek szerint még létezniük sem szabadott volna. Ez a felfedezés alapjaiban írja át az univerzum korai fejlődéséről alkotott tudásunkat.</p>
+        </div>
+
+        <!-- 3. MEGHÖKKENTŐ TÉNY: VAS- ÉS ÜVEGESŐ EXOBOLYGÓKON -->
+        <div class="info-card">
+            <h3 data-hu="Bolygók, ahol olvadt vas és üveg esik az égből" data-en="Exoplanets Where It Rains Molten Iron and Glass">Bolygók, ahol olvadt vas és üveg esik az égből</h3>
+            <p data-hu="A WASP-76b exobolygón a nappali oldalon 2400 °C fölé hevül a légkör, ami elpárologtatja a fémeket, a 18 000 km/h-s szél pedig átfújja őket az éjszakai oldalra, ahol a vas cseppekbe áll össze és izzó esőként hullik alá. A HD 189733b bolygón pedig oldalirányban, hangsebesség hétszeresével süvítő üvegszilánk-viharok tombolnak." data-en="On exoplanet WASP-76b, daytime temperatures exceed 2,400 °C, vaporizing iron that is carried by 18,000 km/h winds to the night side, where it condenses and falls as molten iron rain. Meanwhile, HD 189733b is lashed by sideways storms of molten glass blowing at seven times the speed of sound.">A WASP-76b exobolygón a nappali oldalon 2400 °C fölé hevül a légkör, ami elpárologtatja a fémeket, a 18 000 km/h-s szél pedig átfújja őket az éjszakai oldalra, ahol a vas cseppekbe áll össze és izzó esőként hullik alá. A HD 189733b bolygón pedig oldalirányban, hangsebesség hétszeresével süvítő üvegszilánk-viharok tombolnak.</p>
+        </div>
+
+        <!-- 4. MEGHÖKKENTŐ TÉNY: BOÖTES-ÜRESÉG (KOZMIKUS SIVATAG) -->
+        <div class="info-card">
+            <h3 data-hu="A Nagy Semmi: a 330 millió fényév széles Boötes-üreg" data-en="The Great Nothing: The 330-Million-Light-Year Boötes Void">A Nagy Semmi: a 330 millió fényév széles Boötes-üreg</h3>
+            <p data-hu="Az Ökörhajcsár csillagkép irányában található az univerzum egyik legkísértetiesebb területe: egy 330 millió fényév átmérőjű kozmikus buborék, amelyben szinte egyáltalán nincsenek galaxisok. Ha a Tejútrendszer ennek az üregnek a közepén helyezkedne el, az emberiség az 1960-as évekig azt hitte volna, hogy az egész világegyetem csak a saját galaxisunkból áll." data-en="In the direction of the constellation Boötes lies one of the eeriest regions in the cosmos: a spherical void 330 million light-years across that is almost completely empty of galaxies. Had the Milky Way been located at its center, humanity wouldn't have known other galaxies existed until the 1960s.">Az Ökörhajcsár csillagkép irányában található az univerzum egyik legkísértetiesebb területe: egy 330 millió fényév átmérőjű kozmikus buborék, amelyben szinte egyáltalán nincsenek galaxisok. Ha a Tejútrendszer ennek az üregnek a közepén helyezkedne el, az emberiség az 1960-as évekig azt hitte volna, hogy az egész világegyetem csak a saját galaxisunkból áll.</p>
+        </div>
+        <!-- 5. MEGHÖKKENTŐ TÉNY: NAGY ATTRAKTOR -->
+        <div class="info-card">
+            <h3 data-hu="A Nagy Attraktor: valami láthatatlan erő magához ránt minket" data-en="The Great Attractor: Something Invisible Is Pulling Us">A Nagy Attraktor: valami láthatatlan erő magához ránt minket</h3>
+            <p data-hu="A Tejútrendszer és több tízezer környező galaxis másodpercenként több mint 600 kilométeres sebességgel száguld egyetlen titokzatos gravitációs pont felé. A legfélelmetesebb az egészben, hogy ez a térség pontosan a saját galaxisunk sűrű korongja mögött rejtőzik, így optikai távcsövekkel szinte lehetetlen belátni abba az irányba." data-en="The Milky Way and tens of thousands of surrounding galaxies are hurtling at over 600 kilometers per second toward a mysterious gravitational anomaly. Eerily, it lies hidden directly behind the dense disk of our own galaxy, blocking optical telescopes from seeing what is pulling us.">A Tejútrendszer és több tízezer környező galaxis másodpercenként több mint 600 kilométeres sebességgel száguld egyetlen titokzatos gravitációs pont felé. A legfélelmetesebb az egészben, hogy ez a térség pontosan a saját galaxisunk sűrű korongja mögött rejtőzik, így optikai távcsövekkel szinte lehetetlen belátni abba az irányba.</p>
+        </div>
+
+        <!-- 6. MEGHÖKKENTŐ TÉNY: NEUTRONCSILLAGOK ÉS TEÁSKANÁLNYI ANYAG -->
+        <div class="info-card">
+            <h3 data-hu="Egyetlen teáskanálnyi anyag, amely többet nyom a Mount Everestnél" data-en="A Single Teaspoon Heavier Than Mount Everest">Egyetlen teáskanálnyi anyag, amely többet nyom a Mount Everestnél</h3>
+            <p data-hu="Amikor egy hatalmas csillag szupernóvaként felrobban, a visszamaradó magja akkora nyomással roskad össze, hogy az atomok elektronjai belepréselődnek a protonokba. Az így létrejövő neutroncsillag mindössze 20 kilométer átmérőjű, mégis nehezebb a Napnál – egyetlen teáskanálnyi anyaga pedig nagyjából egymilliárd tonnát nyom." data-en="When a massive star explodes as a supernova, its core collapses with such immense gravity that electrons are crushed into protons. The resulting neutron star is only about 20 kilometers wide yet heavier than our Sun—a single teaspoon of its matter weighs roughly a billion tons.">Amikor egy hatalmas csillag szupernóvaként felrobban, a visszamaradó magja akkora nyomással roskad össze, hogy az atomok elektronjai belepréselődnek a protonokba. Az így létrejövő neutroncsillag mindössze 20 kilométer átmérőjű, mégis nehezebb a Napnál – egyetlen teáskanálnyi anyaga pedig nagyjából egymilliárd tonnát nyom.</p>
+        </div>
+
+        <!-- 7. MEGHÖKKENTŐ TÉNY: GYÉMÁNTBOLYGÓ -->
+        <div class="info-card">
+            <h3 data-hu="55 Cancri e: egy Földnél kétszer nagyobb, színültig gyémánt bolygó" data-en="55 Cancri e: A Super-Earth Made Largely of Diamond">55 Cancri e: egy Földnél kétszer nagyobb, színültig gyémánt bolygó</h3>
+            <p data-hu="A Rák csillagképben, mindössze 41 fényévre tőlünk kering egy szuperföld, amelynek felszíne és belseje szénben rendkívül gazdag. A bolygón uralkodó óriási nyomás és a 2000 °C feletti forróság hatására ez a szénkristályos szerkezet hatalmas gyémántréteggé alakult, amelynek tömege többszöröse a Földének." data-en="Just 41 light-years away in the constellation Cancer orbits a super-Earth extraordinarily rich in carbon. Under immense internal pressure and temperatures exceeding 2,000 °C, much of this carbon has crystallized into a massive layer of diamond exceeding the total mass of Earth.">A Rák csillagképben, mindössze 41 fényévre tőlünk kering egy szuperföld, amelynek felszíne és belseje szénben rendkívül gazdag. A bolygón uralkodó óriási nyomás és a 2000 °C feletti forróság hatására ez a szénkristályos szerkezet hatalmas gyémántréteggé alakult, amelynek tömege többszöröse a Földének.</p>
+        </div>
+
+        <!-- 8. MEGHÖKKENTŐ TÉNY: FRB GYORS RÁDIÓKITÖRÉSEK -->
+        <div class="info-card">
+            <h3 data-hu="Milliszekundumos kozmikus rádiójelek távoli galaxisokból" data-en="Millisecond Cosmic Radio Bursts from Distant Galaxies">Milliszekundumos kozmikus rádiójelek távoli galaxisokból</h3>
+            <p data-hu="A gyors rádiókitörések (FRB-k) a világegyetem egyik legrejtélyesebb jelenségei: a másodperc ezredrésze alatt annyi energiát sugároznak ki rádióhullámok formájában, amennyit a Napunk több nap vagy akár egy egész év alatt bocsát ki. Egyes források teljesen kiszámíthatatlanul, míg mások rejtélyes ütemben ismétlődve küldik a jeleket milliárd fényévek távolságából." data-en="Fast Radio Bursts (FRBs) are among the universe's most baffling phenomena: in a fraction of a millisecond, they release as much radio energy as our Sun emits over days or even an entire year. While most flare once and vanish, a few repeat in mysterious patterns from billions of light-years away.">A gyors rádiókitörések (FRB-k) a világegyetem egyik legrejtélyesebb jelenségei: a másodperc ezredrésze alatt annyi energiát sugároznak ki rádióhullámok formájában, amennyit a Napunk több nap vagy akár egy egész év alatt bocsát ki. Egyes források teljesen kiszámíthatatlanul, míg mások rejtélyes ütemben ismétlődve küldik a jeleket milliárd fényévek távolságából.</p>
+        </div>
+
+    </div>
+</section>
+
+
 <section id="magamrol" style="border-bottom: none;">
     <h2 data-hu="Magamról" data-en="About Me">Magamról</h2>
     <div class="info-card">
         <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
-           <img src="kepek/profil.jpg" alt="Teleki Lajos" style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">
+            <img src="kepek/profil.jpg" alt="Teleki Lajos" style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">
             <div>
                 <h3 style="margin-bottom: 0.2rem;">Teleki Lajos</h3>
                 <span style="color: var(--accent); font-size: 0.9rem;" data-hu="Amatőrcsillagász & Asztrofotós" data-en="Amateur Astronomer & Astrophotographer">Amatőrcsillagász & Asztrofotós</span>
             </div>
         </div>
-        <p style="margin-bottom: 1rem;" data-hu="Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit." data-en="Welcome to csillagvilag.com! As an amateur astronomer and astrophotographer, my passion is capturing the invisible wonders of the night sky. From distant emission and reflection nebulae to spiral galaxies and the finest details of lunar craters, I explore and document the hidden structures of the cosmos.">Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit.</p>
-        <p style="margin-bottom: 1.5rem;" data-hu="Az asztrofotózásban nemcsak maga a megfigyelés és a hosszú expozíciós sorozatok feldolgozása lelkesít, hanem a technikai kihívások és a barkácsolás is: a Sky-Watcher Evostar 80 ED refraktoromhoz például saját tervezésű, léptetőmotoros fókuszálót építettem, emellett a DWARF MINI okostávcsővel és Canon 70D fényképezőgéppel járom az éjszakai égboltot. Remélem, hogy a képeim és videóim neked is átadják a csillagos égbolt csendes varázsát!" data-en="Beyond visual observation and processing multi-hour exposure sequences, I am equally fascinated by the technical and DIY aspects of the hobby: I built a custom stepper-motor focuser for my Sky-Watcher Evostar 80 ED refractor, and I also explore the night sky with my DWARF MINI smart telescope and Canon 70D camera. I hope my photos and videos share the quiet magic of the starry sky with you!">Az asztrofotózásban nemcsak maga a megfigyelés és a hosszú expozíciós sorozatok feldolgozása lelkesít, hanem a technikai kihívások és a barkácsolás is: a Sky-Watcher Evostar 80 ED refraktoromhoz például saját tervezésű, léptetőmotoros fókuszálót építettem, emellett a DWARF MINI okostávcsővel és Canon 70D fényképezőgéppel járom az éjszakai égboltot. Remélem, hogy a képeim és videóim neked is átadják a csillagos égbolt csendes varázsát!</p>
+
+        <p style="margin-bottom: 1rem;" 
+           data-hu="Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit. 2026 májusában kezdtem el komolyan foglalkozni a csillagászattal: ekkor szereztem be az első távcsövemet, a Sky-Watcher Evostar 80 ED refraktort, amelyet a ma már nem fiatal, de annál nagyszerűbb Canon 70D tükörreflexes fényképezőgépemmel és fotós Manfrotto állványommal együtt kezdtem használni." 
+           data-en="Welcome to csillagvilag.com! As an amateur astronomer and astrophotographer, my passion is capturing the invisible wonders of the night sky. From distant emission and reflection nebulae to spiral galaxies and the finest details of lunar craters, I seek out the hidden structures of the cosmos. I began pursuing astronomy seriously in May 2026, when I acquired my first telescope, a Sky-Watcher Evostar 80 ED refractor, pairing it with my seasoned yet remarkably capable Canon 70D DSLR camera and Manfrotto photo tripod.">
+           Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit. 2026 májusában kezdtem el komolyan foglalkozni a csillagászattal: ekkor szereztem be az első távcsövemet, a Sky-Watcher Evostar 80 ED refraktort, amelyet a ma már nem fiatal, de annál nagyszerűbb Canon 70D tükörreflexes fényképezőgépemmel és fotós Manfrotto állványommal együtt kezdtem használni.
+        </p>
+
+        <p style="margin-bottom: 1rem;" 
+           data-hu="Hamar szembesültem azzal, hogy a fotós állványon a kézi élességállítás a beremegés miatt komoly kihívás. Mivel az asztrofotózásban a technikai barkácsolás is legalább annyira lelkesít, mint maga az észlelés, a Google Gemini AI segítségével megterveztem és megépítettem egy saját léptetőmotoros fókuszálót, amely azóta is tűpontosan és rezgésmentesen működik. Emellett a DWARF MINI okostávcsővel is járom az éjszakai égboltot." 
+           data-en="I quickly realized that manual focusing on a photo tripod is a serious challenge due to vibrations. Because the technical and DIY side of astrophotography excites me just as much as the observation itself, I designed and built a custom stepper-motor focuser with the help of Google Gemini AI, which has worked with pinpoint, vibration-free precision ever since. Alongside this setup, I also explore the night sky with my DWARF MINI smart telescope.">
+           Hamar szembesültem azzal, hogy a fotós állványon a kézi élességállítás a beremegés miatt komoly kihívás. Mivel az asztrofotózásban a technikai barkácsolás is legalább annyira lelkesít, mint maga az észlelés, a Google Gemini AI segítségével megterveztem és megépítettem egy saját léptetőmotoros fókuszálót, amely azóta is tűpontosan és rezgésmentesen működik. Emellett a DWARF MINI okostávcsővel is járom az éjszakai égboltot.
+        </p>
+
+        <p style="margin-bottom: 1.5rem;" 
+           data-hu="Nyugdíjasként szűkösebbek az anyagi lehetőségeim, ezért igyekszem mindenhol észszerűen takarékoskodni, ahol csak lehet. Az égbolt tüneményei iránti rajongásom azonban mindig arra inspirál, hogy kreatív megoldásokkal, alacsony költségvetésből is egyre szebb képeket és videókat készítsek a saját és mások örömére. Remélem, hogy a felvételeim neked is átadják a csillagos égbolt csendes varázsát!" 
+           data-en="As a retiree on a modest budget, I try to be resourceful and save wherever I can. Yet my fascination with celestial wonders constantly inspires me to find creative, low-budget ways to capture ever-better photos and videos for my own joy and that of others. I hope my images and videos bring a touch of the night sky's quiet magic to you as well!">
+           Nyugdíjasként szűkösebbek az anyagi lehetőségeim, ezért igyekszem mindenhol észszerűen takarékoskodni, ahol csak lehet. Az égbolt tüneményei iránti rajongásom azonban mindig arra inspirál, hogy kreatív megoldásokkal, alacsony költségvetésből is egyre szebb képeket és videókat készítsek a saját és mások örömére. Remélem, hogy a felvételeim neked is átadják a csillagos égbolt csendes varázsát!
+        </p>
+
         <a href="https://facebook.com" target="_blank" class="social-link" data-hu="Kövess Facebookon" data-en="Follow on Facebook">Kövess Facebookon</a>
     </div>
 </section>
+
 
 <footer><p>&copy; 2026 csillagvilag.com – Teleki Lajos</p></footer>
 
