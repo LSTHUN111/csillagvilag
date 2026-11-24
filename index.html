@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>csillagvilag.com - Teleki Lajos csillagaszati fotoi</title>
+    <style>
+        :root { --bg-dark: #03050a; --bg-glass: rgba(15, 23, 42, 0.65); --text-main: #f1f5f9; --text-muted: #94a3b8; --accent: #00f0ff; --accent-purple: #8b5cf6; --border: rgba(56, 189, 248, 0.22); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        #starfield { position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at top, #0f172a 0%, #03050a 80%); }
+        header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(3, 5, 10, 0.78); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+        .nav-container { max-width: 1280px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .logo { display: flex; align-items: center; gap: 0.85rem; font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 1px; text-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+        .logo span { color: var(--accent); font-weight: 400; font-size: 0.85rem; display: block; }
+        .profile-pic { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 2px solid var(--accent); box-shadow: 0 0 12px rgba(0, 240, 255, 0.5); flex-shrink: 0; }
+        nav ul { list-style: none; display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; }
+        nav a { color: var(--text-main); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: 0.25s; }
+        nav a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        .social-link { display: inline-flex; align-items: center; color: #fff; background: rgba(24, 119, 242, 0.2); border: 1px solid rgba(24, 119, 242, 0.6); padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.85rem; text-decoration: none; transition: 0.25s; }
+        .social-link:hover { background: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.6); }
+        .lang-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.3rem 0.7rem; border-radius: 6px; cursor: pointer; font-weight: 700; transition: 0.25s; font-size: 0.85rem; }
+        .lang-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
+        .hero { position: relative; height: 85vh; min-height: 520px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; border-bottom: 1px solid var(--border); }
+        .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.08); transition: opacity 1.8s ease, transform 8s ease; z-index: 1; }
+        .slide.active { opacity: 1; filter: brightness(1.18) contrast(1.08); transform: scale(1); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(3,5,10,0.05) 0%, rgba(3,5,10,0.2) 65%, rgba(3,5,10,0.95) 100%); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; max-width: 800px; padding: 0 1.5rem; margin-top: 3rem; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; background: linear-gradient(90deg, #fff, var(--accent), #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #cbd5e1; font-size: 1.15rem; margin-bottom: 2rem; }
+        .cta-btn { display: inline-block; padding: 0.85rem 2rem; border-radius: 30px; font-weight: 700; text-decoration: none; color: #000; background: linear-gradient(90deg, var(--accent), #38bdf8); box-shadow: 0 0 25px rgba(0, 240, 255, 0.45); transition: 0.3s; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(0, 240, 255, 0.8); }
+        section { max-width: 1280px; margin: 0 auto; padding: 5rem 1.5rem; border-bottom: 1px solid var(--border); }
+        h2 { font-size: 2rem; margin-bottom: 1.8rem; color: #fff; display: flex; align-items: center; gap: 0.75rem; }
+        h2::before { content: ""; width: 6px; height: 28px; border-radius: 3px; background: linear-gradient(180deg, var(--accent), var(--accent-purple)); box-shadow: 0 0 12px var(--accent); }
+        .controls-bar { background: var(--bg-glass); backdrop-filter: blur(12px); border: 1px solid var(--border); padding: 1.25rem; border-radius: 12px; margin-bottom: 2rem; }
+        .search-box { width: 100%; padding: 0.8rem 1.2rem; border-radius: 8px; border: 1px solid var(--border); background: rgba(3, 5, 10, 0.8); color: #fff; font-size: 1rem; margin-bottom: 1rem; outline: none; }
+        .search-box:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 240, 255, 0.25); }
+        .filter-group { margin-bottom: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .filter-label { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-right: 0.4rem; }
+        .filter-btn { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); color: var(--text-main); padding: 0.45rem 0.95rem; border-radius: 20px; cursor: pointer; font-size: 0.88rem; transition: 0.25s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.75rem; }
+        .photo-card { background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.35s; }
+        .photo-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 240, 255, 0.18); }
+        .photo-card img { width: 100%; height: 240px; object-fit: cover; display: block; background: #020408; transition: 0.5s; }
+        .photo-card:hover img { transform: scale(1.04); }
+        .photo-info { padding: 1.2rem; }
+        .photo-cat { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .photo-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff; }
+        .photo-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .info-card { background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 1.75rem; border-radius: 12px; transition: 0.3s; }
+        .info-card:hover { border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(139, 92, 246, 0.15); }
+        .info-card h3 { color: var(--accent); margin-bottom: 0.8rem; font-size: 1.25rem; }
+        .info-card p, .info-card li { color: var(--text-muted); font-size: 0.96rem; }
+        .info-card ul { padding-left: 1.2rem; }
+        #eszkozok .info-card img { width: 100%; height: 240px; object-fit: contain; background: #020408; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); padding: 0.5rem; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 1rem; background: #000; }
+        .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(2, 4, 8, 0.96); z-index: 1000; justify-content: center; align-items: center; padding: 1.5rem; }
+        .lightbox.open { display: flex; }
+        .lightbox-content { max-width: 1150px; width: 100%; background: #0b1120; border: 1px solid var(--accent); border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 0 40px rgba(0, 240, 255, 0.25); }
+        .lightbox-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0, 0, 0, 0.8); color: #fff; border: 1px solid var(--accent); width: 38px; height: 38px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; z-index: 10; }
+        .lb-nav { position: absolute; top: 45%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.75); color: #fff; border: 1px solid var(--accent); width: 46px; height: 46px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.25s; z-index: 10; }
+        .lb-nav:hover { background: var(--accent); color: #000; box-shadow: 0 0 15px var(--accent); }
+        .lb-prev { left: 1rem; }
+        .lb-next { right: 1rem; }
+        .lightbox img { width: 100%; max-height: 75vh; object-fit: contain; background: #000; display: block; }
+        .lightbox-details { padding: 1.4rem; }
+        footer { text-align: center; padding: 3rem 1.5rem; color: var(--text-muted); font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+<audio id="bgMusic" src="kepek/urhang.mp3" loop></audio>
+
+<header>
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <img src="kepek/profil.jpg" alt="Teleki Lajos" class="profile-pic">
+            <div>
+                csillagvilag.com
+                <span data-hu="Teleki Lajos csillagászati fotói" data-en="Astrophotography by Lajos Teleki">Teleki Lajos csillagászati fotói</span>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#galeria" data-hu="Galéria" data-en="Gallery">Galéria</a></li>
+                <li><a href="#videok" data-hu="Videók" data-en="Videos">Videók</a></li>
+                <li><a href="#eszkozok" data-hu="Eszközök" data-en="Equipment">Eszközök</a></li>
+                <li><a href="#esemenyek" data-hu="Események" data-en="Events">Események</a></li>
+                <li><a href="#erdekessegek" data-hu="Érdekességek" data-en="Curiosities">Érdekességek</a></li>
+                <li><a href="#magamrol" data-hu="Magamról" data-en="About Me">Magamról</a></li>
+                <li><a href="https://facebook.com" target="_blank" class="social-link">Facebook</a></li>
+                <li><button class="lang-btn" id="soundToggle" onclick="toggleSpaceAudio()" data-hu="Hang: KI" data-en="Sound: OFF">Hang: KI</button></li>
+                <li><button class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="hero" id="heroSlideshow">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 data-hu="A világegyetem rejtett részletei" data-en="Hidden Details of the Universe">A világegyetem rejtett részletei</h1>
+        <p data-hu="Mély-ég objektumok, bolygók és égi jelenségek megörökítése hazai égbolt alól." data-en="Capturing deep-sky objects, planets, and celestial phenomena under the night sky.">Mély-ég objektumok, bolygók és égi jelenségek megörökítése hazai égbolt alól.</p>
+        <a href="#galeria" class="cta-btn" data-hu="Galéria felfedezése" data-en="Explore Gallery">Galéria felfedezése</a>
+    </div>
+</div>
+
+<section id="galeria">
+    <h2 data-hu="Asztrofotó Galéria" data-en="Astrophotography Gallery">Asztrofotó Galéria</h2>
+    <div class="controls-bar">
+        <input type="text" id="searchInput" class="search-box" onkeyup="renderGallery()" placeholder="Keresés név, leírás vagy távcső alapján (pl. Orion, M31, Hold)..." data-ph-hu="Keresés név, leírás vagy távcső alapján (pl. Orion, M31, Hold)..." data-ph-en="Search by object name, description, or gear...">
+        <div class="filter-group">
+            <span class="filter-label" data-hu="Főkategória:" data-en="Category:">Főkategória:</span>
+            <button class="filter-btn active" onclick="filterGallery('all', this)" data-hu="Összes kép" data-en="All Photos">Összes kép</button>
+            <button class="filter-btn" onclick="filterGallery('melyeg', this)" data-hu="Mély-ég objektumok" data-en="Deep-Sky Objects">Mély-ég objektumok</button>
+            <button class="filter-btn" onclick="filterGallery('naprendszer', this)" data-hu="Naprendszer" data-en="Solar System">Naprendszer</button>
+        </div>
+        <div class="filter-group" style="margin-bottom:0;">
+            <span class="filter-label" data-hu="Alkategória:" data-en="Subcategory:">Alkategória:</span>
+            <button class="filter-btn sub-btn melyeg-sub" onclick="filterSub('diffuz', this)" data-hu="Diffúz ködök" data-en="Diffuse Nebulae">Diffúz ködök</button>
+            <button class="filter-btn sub-btn melyeg-sub" onclick="filterSub('galaxis', this)" data-hu="Galaxisok" data-en="Galaxies">Galaxisok</button>
+            <button class="filter-btn sub-btn melyeg-sub" onclick="filterSub('halmaz', this)" data-hu="Csillaghalmazok" data-en="Star Clusters">Csillaghalmazok</button>
+            <button class="filter-btn sub-btn naprendszer-sub" onclick="filterSub('nap', this)" data-hu="Nap" data-en="Sun">Nap</button>
+            <button class="filter-btn sub-btn naprendszer-sub" onclick="filterSub('bolygok', this)" data-hu="Bolygók" data-en="Planets">Bolygók</button>
+            <button class="filter-btn sub-btn naprendszer-sub" onclick="filterSub('hold', this)" data-hu="Hold" data-en="Moon">Hold</button>
+        </div>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<section id="videok">
+    <h2 data-hu="Videó Galéria & Timelapse" data-en="Video Gallery & Timelapse">Videó Galéria & Timelapse</h2>
+    <div class="cards-grid" id="videoGrid"></div>
+</section>
+
+
+<section id="eszkozok">
+    <h2 data-hu="Eszközök és felszerelés" data-en="Equipment & Gear">Eszközök és felszerelés</h2>
+    <div class="cards-grid">
+               <!-- 1. KÁRTYA: SKYWATCHER EVOSTAR 80 ED + DIY FÓKUSZÁLÓ -->
+        <div class="info-card">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                <img src="kepek/evostar-1.jpg" alt="Evostar 80 ED" style="width:50%; height:180px; object-fit:contain; background:#ffffff; border-radius:8px; border:1px solid var(--border); padding:0.4rem;">
+                <img src="kepek/fokuszalo-kozeli.jpg" alt="DIY fókuszáló" style="width:50%; height:180px; object-fit:contain; background:#ffffff; border-radius:8px; border:1px solid var(--border); padding:0.4rem;">
+            </div>
+            <h3 data-hu="Sky-Watcher Evostar 80 ED (80/600)" data-en="Sky-Watcher Evostar 80 ED (80/600)">Sky-Watcher Evostar 80 ED (80/600)</h3>
+            <ul>
+                <li data-hu="Apokromatikus ED refraktor (80 mm átmérő, 600 mm fókusztávolság, f/7.5)" data-en="Apochromatic ED refractor (80 mm aperture, 600 mm focal length, f/7.5)">Apokromatikus ED refraktor (80 mm átmérő, 600 mm fókusztávolság, f/7.5)</li>
+                <li data-hu="Egyedi, saját készítésű léptetőmotoros fókuszáló (DIY motorfocus) a precíz, rezgésmentes élességállításhoz" data-en="Custom DIY stepper-motor focuser for precise, vibration-free focusing">Egyedi, saját készítésű léptetőmotoros fókuszáló (DIY motorfocus) a precíz, rezgésmentes élességállításhoz</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <img src="kepek/dwarf-mini.jpg" alt="DWARF MINI okostávcső" >
+            <h3 data-hu="DWARF MINI Okostávcső" data-en="DWARF MINI Smart Telescope">DWARF MINI Okostávcső</h3>
+            <ul>
+                <li data-hu="Kompakt, automatizált okostávcső mély-ég objektumok, ködök és galaxisok megörökítéséhez" data-en="Compact automated smart telescope for capturing deep-sky objects, nebulae, and galaxies">Kompakt, automatizált okostávcső mély-ég objektumok, ködök és galaxisok megörökítéséhez</li>
+                <li data-hu="EQ és Normal üzemmód, Duo-Band és Astro szűrőkkel" data-en="EQ and Normal tracking modes with Duo-Band and Astro filters">EQ és Normal üzemmód, Duo-Band és Astro szűrőkkel</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <img src="kepek/canon-70d.jpg" alt="Canon EOS 70D" >
+            <h3 data-hu="Canon EOS 70D DSLR Kamera" data-en="Canon EOS 70D DSLR Camera">Canon EOS 70D DSLR Kamera</h3>
+            <ul>
+                <li data-hu="20,2 megapixeles APS-C CMOS szenzor kihajtható érintőkijelzővel" data-en="20.2 MP APS-C CMOS sensor with vari-angle touchscreen">20,2 megapixeles APS-C CMOS szenzor kihajtható érintőkijelzővel</li>
+                <li data-hu="Hold-, bolygó- és nagylátószögű csillagászati felvételekhez" data-en="Used for lunar, planetary, and wide-field astrophotography">Hold-, bolygó- és nagylátószögű csillagászati felvételekhez</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <img src="kepek/manfrotto-allvany.jpg" alt="Manfrotto 055AB és 128RC" >
+            <h3 data-hu="Manfrotto 055AB Állvány + 128RC Fej" data-en="Manfrotto 055AB Tripod + 128RC Head">Manfrotto 055AB Állvány + 128RC Fej</h3>
+            <ul>
+                <li data-hu="Masszív, nagy teherbírású alumínium állvány a stabil alátámasztásért" data-en="Heavy-duty aluminum tripod providing rock-solid stability">Masszív, nagy teherbírású alumínium állvány a stabil alátámasztásért</li>
+                <li data-hu="Manfrotto 128RC finommozgatású fluid fej a pontos célra álláshoz" data-en="Manfrotto 128RC micro fluid head for smooth, accurate framing">Manfrotto 128RC finommozgatású fluid fej a pontos célra álláshoz</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="esemenyek">
+    <h2 data-hu="Csillagászati események & Észlelési tervek" data-en="Astronomical Events & Observation Plans">Csillagászati események & Észlelési tervek</h2>
+    <div class="cards-grid">
+
+        <!-- 1. ESEMÉNY KÁRTYA -->
+        <div class="info-card">
+            <h3 data-hu="2026. december – Geminidák meteorraj és a téli égbolt" data-en="December 2026 – Geminids Meteor Shower & Winter Sky">2026. december – Geminidák meteorraj és a téli égbolt</h3>
+            <p data-hu="Az év egyik legbőségesebb meteorraja, a Geminidák december 13–14. éjszakáján éri el a maximumát. Emellett a téli hónapokban kerülnek ideális helyzetbe az Orion csillagkép látványos ködei (M42, Lófej-köd) és a Rozetta-köd is." data-en="One of the richest meteor showers of the year, the Geminids, peaks on the night of December 13–14. Meanwhile, winter brings prime imaging conditions for the iconic nebulae of Orion (M42, Horsehead Nebula) and the Rosette Nebula.">Az év egyik legbőségesebb meteorraja, a Geminidák december 13–14. éjszakáján éri el a maximumát. Emellett a téli hónapokban kerülnek ideális helyzetbe az Orion csillagkép látványos ködei (M42, Lófej-köd) és a Rozetta-köd is.</p>
+        </div>
+
+        <!-- 2. ESEMÉNY KÁRTYA -->
+        <div class="info-card">
+            <h3 data-hu="2027. tavasz – A galaxisok évada" data-en="Spring 2027 – Galaxy Season">2027. tavasz – A galaxisok évada</h3>
+            <p data-hu="Január elején a Quadrantidák meteorrajjal indul az év, tavasszal pedig a Tejút sávja helyett a távoli galaxishalmazok veszik át a főszerepet: az Oroszlán-hármas (Leo Triplet), a Szűz-halmaz és a Örvény-galaxis (M51) kerülnek a távcsövek célkeresztjébe." data-en="The year kicks off with the Quadrantids meteor shower in early January, followed by spring galaxy season: the Leo Triplet, the Virgo Cluster, and the Whirlpool Galaxy (M51) take center stage.">Január elején a Quadrantidák meteorrajjal indul az év, tavasszal pedig a Tejút sávja helyett a távoli galaxishalmazok veszik át a főszerepet: az Oroszlán-hármas (Leo Triplet), a Szűz-halmaz és a Örvény-galaxis (M51) kerülnek a távcsövek célkeresztjébe.</p>
+        </div>
+
+        <!-- 3. ESEMÉNY KÁRTYA -->
+        <div class="info-card">
+            <h3 data-hu="2027. nyár – Perseidák és a nyári Tejút" data-en="Summer 2027 – Perseids & Summer Milky Way">2027. nyár – Perseidák és a nyári Tejút</h3>
+            <p data-hu="A nyári hónapokban a Hattyú és a Nyilas csillagkép sűrű emissziós ködei (Észak-Amerika-köd, Pelikán-köd, Lagúna-köd) kínálnak hálás témát Duo-Band szűrővel, augusztus közepén pedig a Perseidák hullócsillagait vadásszuk a miskolci és bükki égbolt alatt." data-en="During summer, dense emission nebulae in Cygnus and Sagittarius (North America, Pelican, and Lagoon Nebulae) offer rich Duo-Band targets, culminating in mid-August with the Perseids meteor shower under the dark skies of Miskolc and the Bükk mountains.">A nyári hónapokban a Hattyú és a Nyilas csillagkép sűrű emissziós ködei (Észak-Amerika-köd, Pelikán-köd, Lagúna-köd) kínálnak hálás témát Duo-Band szűrővel, augusztus közepén pedig a Perseidák hullócsillagait vadásszuk a miskolci és bükki égbolt alatt.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="erdekessegek">
+    <h2 data-hu="Érdekességek & Kulisszatitkok" data-en="Curiosities & Behind the Scenes">Érdekességek & Kulisszatitkok</h2>
+    <div class="cards-grid">
+        <div class="info-card">
+            <h3 data-hu="Miért készül 50–150 kép egyetlen fotóhoz?" data-en="Why Take 50–150 Frames for a Single Photo?">Miért készül 50–150 kép egyetlen fotóhoz?</h3>
+            <p data-hu="A távoli ködök és galaxisok fénye rendkívül halvány. Egyetlen 15 vagy 60 másodperces nyers felvételen alig látszanak, ezért több tucat vagy akár több száz képet rögzítek ugyanarról az objektumról. Speciális szoftverekkel ezeket egymásra illesztve (stacking) a képzaj kisimul, és előbújnak a kozmosz finom gázfelhői." data-en="The light from distant nebulae and galaxies is extremely faint. A single 15- or 60-second raw frame barely reveals them, so dozens or even hundreds of exposures are captured and aligned (stacked) to eliminate noise and bring out delicate cosmic gas structures.">A távoli ködök és galaxisok fénye rendkívül halvány. Egyetlen 15 vagy 60 másodperces nyers felvételen alig látszanak, ezért több tucat vagy akár több száz képet rögzítek ugyanarról az objektumról. Speciális szoftverekkel ezeket egymásra illesztve (stacking) a képzaj kisimul, és előbújnak a kozmosz finom gázfelhői.</p>
+        </div>
+        <div class="info-card">
+            <h3 data-hu="Hogyan szűrjük ki a városi fényszennyezést?" data-en="Filtering Out City Light Pollution">Hogyan szűrjük ki a városi fényszennyezést?</h3>
+            <p data-hu="A Duo-Band (keskenysávú) szűrők csak a csillagközi gázfelhők által kibocsátott speciális hullámhosszakat (hidrogén-alfa és oxigén-III) engedik át a szenzorra, miközben a közvilágítás zavaró fényét blokkolják. Ennek köszönhetően akár lakott területről is látványos részletességgel fotózhatók az emissziós ködök." data-en="Duo-Band narrowband filters only allow specific wavelengths emitted by ionized interstellar gas (Hydrogen-alpha and Oxygen-III) to reach the sensor while blocking artificial streetlights, making detailed nebula imaging possible even near urban areas.">A Duo-Band (keskenysávú) szűrők csak a csillagközi gázfelhők által kibocsátott speciális hullámhosszakat (hidrogén-alfa és oxigén-III) engedik át a szenzorra, miközben a közvilágítás zavaró fényét blokkolják. Ennek köszönhetően akár lakott területről is látványos részletességgel fotózhatók az emissziós ködök.</p>
+        </div>
+        <div class="info-card">
+            <h3 data-hu="Mikrométeres pontosság: a DIY motoros fókuszáló" data-en="Micron Precision: DIY Stepper Focuser">Mikrométeres pontosság: a DIY motoros fókuszáló</h3>
+            <p data-hu="Az asztrofotózásban a tizedmilliméteres élességhiba is elmosódott csillagokat eredményez, ráadásul az éjszakai lehűlés miatt a távcső tubusa is enyhén összehúzódik. A Sky-Watcher Evostar 80 ED refraktoromra épített saját léptetőmotoros fókuszálóval kézzel való érintés, így remegés nélkül állítható be a tűéles fókusz." data-en="In astrophotography, even a fraction of a millimeter of focus shift blurs stars, and falling night temperatures cause slight thermal contraction in telescope tubes. My custom stepper-motor focuser on the Sky-Watcher Evostar 80 ED allows razor-sharp, vibration-free focusing.">Az asztrofotózásban a tizedmilliméteres élességhiba is elmosódott csillagokat eredményez, ráadásul az éjszakai lehűlés miatt a távcső tubusa is enyhén összehúzódik. A Sky-Watcher Evostar 80 ED refraktoromra épített saját léptetőmotoros fókuszálóval kézzel való érintés, így remegés nélkül állítható be a tűéles fókusz.</p>
+        </div>
+    </div>
+</section>
+
+<section id="magamrol" style="border-bottom: none;">
+    <h2 data-hu="Magamról" data-en="About Me">Magamról</h2>
+    <div class="info-card">
+        <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
+           <img src="kepek/profil.jpg" alt="Teleki Lajos" style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">
+            <div>
+                <h3 style="margin-bottom: 0.2rem;">Teleki Lajos</h3>
+                <span style="color: var(--accent); font-size: 0.9rem;" data-hu="Amatőrcsillagász & Asztrofotós" data-en="Amateur Astronomer & Astrophotographer">Amatőrcsillagász & Asztrofotós</span>
+            </div>
+        </div>
+        <p style="margin-bottom: 1rem;" data-hu="Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit." data-en="Welcome to csillagvilag.com! As an amateur astronomer and astrophotographer, my passion is capturing the invisible wonders of the night sky. From distant emission and reflection nebulae to spiral galaxies and the finest details of lunar craters, I explore and document the hidden structures of the cosmos.">Üdvözöllek a csillagvilag.com oldalon! Amatőrcsillagászként és asztrofotósként szenvedélyem az éjszakai égbolt szabad szemmel láthatatlan csodáinak megörökítése. A távoli emissziós és reflexiós ködöktől a spirálgalaxisokon át egészen a Hold krátereinek legapróbb részleteiig keresem a kozmosz rejtett struktúráit.</p>
+        <p style="margin-bottom: 1.5rem;" data-hu="Az asztrofotózásban nemcsak maga a megfigyelés és a hosszú expozíciós sorozatok feldolgozása lelkesít, hanem a technikai kihívások és a barkácsolás is: a Sky-Watcher Evostar 80 ED refraktoromhoz például saját tervezésű, léptetőmotoros fókuszálót építettem, emellett a DWARF MINI okostávcsővel és Canon 70D fényképezőgéppel járom az éjszakai égboltot. Remélem, hogy a képeim és videóim neked is átadják a csillagos égbolt csendes varázsát!" data-en="Beyond visual observation and processing multi-hour exposure sequences, I am equally fascinated by the technical and DIY aspects of the hobby: I built a custom stepper-motor focuser for my Sky-Watcher Evostar 80 ED refractor, and I also explore the night sky with my DWARF MINI smart telescope and Canon 70D camera. I hope my photos and videos share the quiet magic of the starry sky with you!">Az asztrofotózásban nemcsak maga a megfigyelés és a hosszú expozíciós sorozatok feldolgozása lelkesít, hanem a technikai kihívások és a barkácsolás is: a Sky-Watcher Evostar 80 ED refraktoromhoz például saját tervezésű, léptetőmotoros fókuszálót építettem, emellett a DWARF MINI okostávcsővel és Canon 70D fényképezőgéppel járom az éjszakai égboltot. Remélem, hogy a képeim és videóim neked is átadják a csillagos égbolt csendes varázsát!</p>
+        <a href="https://facebook.com" target="_blank" class="social-link" data-hu="Kövess Facebookon" data-en="Follow on Facebook">Kövess Facebookon</a>
+    </div>
+</section>
+
+<footer><p>&copy; 2026 csillagvilag.com – Teleki Lajos</p></footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)"><div class="lightbox-content"><button class="lightbox-close" onclick="closeLightbox(event, true)">&times;</button><button class="lb-nav lb-prev" onclick="changePhoto(-1)">&#10094;</button><button class="lb-nav lb-next" onclick="changePhoto(1)">&#10095;</button><img id="lbImg" src="" alt=""><div class="lightbox-details"><div class="photo-cat" id="lbCat"></div><h3 id="lbTitle" style="color:#fff"></h3><p id="lbDesc"></p><p class="photo-meta" id="lbMeta"></p></div></div></div>
+<script>
+    var currentLang = "hu", activeMain = "all", activeSub = "all", currentFiltered = [], currentLbIndex = 0;
+
+    var photos = [
+        { src: "kepek/hold.jpg", mainCat: "naprendszer", subCat: "hold", catHu: "Naprendszer / Hold", catEn: "Solar System / Moon", titleHu: "A Hold felszíne – Kráterek és tengerek", titleEn: "Lunar Surface – Craters and Maria", descHu: "Részletgazdag holdfelvétel a terminátor mentén, ahol a súrlófény kiemeli a kráterek peremét és hegyláncait.", descEn: "Detailed lunar capture along the terminator, where oblique sunlight highlights crater rims and mountain ranges.", meta: "DWARF MINI" },
+        { src: "kepek/hold2.jpg", mainCat: "naprendszer", subCat: "hold", catHu: "Naprendszer / Hold", catEn: "Solar System / Moon", titleHu: "Hold – Nagy nagyítású részletfotó", titleEn: "Moon – High-Magnification Close-Up", descHu: "A holdfelszín finom geológiai részletei, becsapódási kráterek és sugársávok.", descEn: "Fine geological details of the lunar surface, impact craters, and ray systems.", meta: "DWARF MINI" },
+        { src: "kepek/m31-andromeda.jpg", mainCat: "melyeg", subCat: "galaxis", catHu: "Mély-ég / Galaxisok", catEn: "Deep-Sky / Galaxies", titleHu: "Androméda köd (M31)", titleEn: "Andromeda Galaxy (M31)", descHu: "Mód: Normal | Szűrő: Duo-Band | Dátum: 2026.09.27", descEn: "Mode: Normal | Filter: Duo-Band | Date: 2026.09.27", meta: "143 x 15s (35,8 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/c20-eszak-amerikai.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Észak-Amerikai köd (C20)", titleEn: "North America Nebula (C20)", descHu: "Mód: Normal | Szűrő: Duo-Band | Dátum: 2026.09.17", descEn: "Mode: Normal | Filter: Duo-Band | Date: 2026.09.17", meta: "150 x 15s (37,5 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ic1805-sziv-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Szív köd (IC 1805)", titleEn: "Heart Nebula (IC 1805)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.02", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.02", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/c33-fatyol-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Fátyol köd (C 33)", titleEn: "Veil Nebula (C 33)", descHu: "Mód: Normal | Szűrő: Duo-Band | Dátum: 2026.09.29", descEn: "Mode: Normal | Filter: Duo-Band | Date: 2026.09.29", meta: "144 x 15s (36 perc) | Gain: 80 | Duo-Band" },
+        { src: "kepek/m45-plejadok.jpg", mainCat: "melyeg", subCat: "halmaz", catHu: "Mély-ég / Csillaghalmazok", catEn: "Deep-Sky / Star Clusters", titleHu: "Plejádok / Fiastyúk (M45)", titleEn: "Pleiades (M45)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.04", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.04", meta: "45 x 60s (45 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ic5070-pelikan-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Pelikán köd (IC 5070)", titleEn: "Pelican Nebula (IC 5070)", descHu: "Mód: Normal | Szűrő: Duo-Band | Dátum: 2026.09.29", descEn: "Mode: Normal | Filter: Duo-Band | Date: 2026.09.29", meta: "139 x 15s (34,8 perc) | Gain: 80 | Duo-Band" },
+        { src: "kepek/m27-sulyzo-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Súlyzó köd (M27)", titleEn: "Dumbbell Nebula (M27)", descHu: "Mód: Normal | Szűrő: Duo-Band | Dátum: 2026.09.30", descEn: "Mode: Normal | Filter: Duo-Band | Date: 2026.09.30", meta: "128 x 15s (32 perc) | Gain: 80 | Duo-Band" },
+        { src: "kepek/ic1848-lelek-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Lélek köd (IC 1848)", titleEn: "Soul Nebula (IC 1848)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.01", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.01", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ngc6960-boszorkanysepru.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Boszorkányseprű köd (NGC 6960)", titleEn: "Witch Broom Nebula (NGC 6960)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.01", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.01", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ic1318-pillango-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Pillangó köd (IC 1318)", titleEn: "Butterfly Nebula (IC 1318)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.01", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.01", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ngc6888-sarlo-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Sarló köd (NGC 6888)", titleEn: "Crescent Nebula (NGC 6888)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.02", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.02", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ngc7331-caldwell30.jpg", mainCat: "melyeg", subCat: "galaxis", catHu: "Mély-ég / Galaxisok", catEn: "Deep-Sky / Galaxies", titleHu: "Caldwell 30 galaxis (NGC 7331)", titleEn: "Caldwell 30 Galaxy (NGC 7331)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.02", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.02", meta: "50 x 60s (50 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc6946-tuzijatek.jpg", mainCat: "melyeg", subCat: "galaxis", catHu: "Mély-ég / Galaxisok", catEn: "Deep-Sky / Galaxies", titleHu: "Tűzijáték galaxis (NGC 6946)", titleEn: "Fireworks Galaxy (NGC 6946)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.03", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.03", meta: "50 x 60s (50 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc7023-irisz-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Írisz köd (NGC 7023)", titleEn: "Iris Nebula (NGC 7023)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.03", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.03", meta: "50 x 60s (50 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc7380-varazslo-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Varázsló köd (NGC 7380)", titleEn: "Wizard Nebula (NGC 7380)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.03", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.03", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/barnard144-hal.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Hal a tányéron köd (Barnard 144)", titleEn: "Fish on a Platter Nebula (Barnard 144)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.04", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.04", meta: "120 x 60s (120 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/m57-gyuru-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Gyűrű köd (M57 / NGC 6720)", titleEn: "Ring Nebula (M57 / NGC 6720)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.05", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.05", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/m71-angolna-halmaz.jpg", mainCat: "melyeg", subCat: "halmaz", catHu: "Mély-ég / Csillaghalmazok", catEn: "Deep-Sky / Star Clusters", titleHu: "Angolna halmaz (M71)", titleEn: "Angelfish Cluster (M71)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.05", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.05", meta: "40 x 60s (40 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc1499-kalifornia.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Kalifornia köd (NGC 1499)", titleEn: "California Nebula (NGC 1499)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.05", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.05", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/m34-nyilt-halmaz.jpg", mainCat: "melyeg", subCat: "halmaz", catHu: "Mély-ég / Csillaghalmazok", catEn: "Deep-Sky / Star Clusters", titleHu: "Messier 34 nyílt halmaz (NGC 1039)", titleEn: "Messier 34 Open Cluster (NGC 1039)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.06", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.06", meta: "45 x 60s (45 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc7822-kerdojel-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Kérdőjel köd (NGC 7822)", titleEn: "Question Mark Nebula (NGC 7822)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.10.06", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.10.06", meta: "50 x 60s (50 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/m39-nyilt-halmaz.jpg", mainCat: "melyeg", subCat: "halmaz", catHu: "Mély-ég / Csillaghalmazok", catEn: "Deep-Sky / Star Clusters", titleHu: "Messier 39 nyílt halmaz (NGC 7092)", titleEn: "Messier 39 Open Cluster (NGC 7092)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.10.06", descEn: "Mode: EQ | Filter: Astro | Date: 2026.10.06", meta: "43 x 60s (43 perc) | Gain: 50 | Astro" },
+        { src: "kepek/ic342-rejtett-galaxis.jpg", mainCat: "melyeg", subCat: "galaxis", catHu: "Mély-ég / Galaxisok", catEn: "Deep-Sky / Galaxies", titleHu: "Rejtett Galaxis (C5 / IC 342)", titleEn: "Hidden Galaxy (C5 / IC 342)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.11.04", descEn: "Mode: EQ | Filter: Astro | Date: 2026.11.04", meta: "80 x 60s (80 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc7635-buborek-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Buborék köd (NGC 7635)", titleEn: "Bubble Nebula (NGC 7635)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.11.05", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.11.05", meta: "99 x 60s (99 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/m33-haromszog-galaxis.jpg", mainCat: "melyeg", subCat: "galaxis", catHu: "Mély-ég / Galaxisok", catEn: "Deep-Sky / Galaxies", titleHu: "A háromszög galaxis (M33 / NGC 598)", titleEn: "Triangulum Galaxy (M33 / NGC 598)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.11.06", descEn: "Mode: EQ | Filter: Astro | Date: 2026.11.06", meta: "95 x 30s (47,5 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ngc869-perseus-halmaz.jpg", mainCat: "melyeg", subCat: "halmaz", catHu: "Mély-ég / Csillaghalmazok", catEn: "Deep-Sky / Star Clusters", titleHu: "Perseus kettős csillaghalmaz (NGC 869)", titleEn: "Perseus Double Cluster (NGC 869)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.11.06", descEn: "Mode: EQ | Filter: Astro | Date: 2026.11.06", meta: "60 x 15s (15 perc) | Gain: 40 | Astro" },
+        { src: "kepek/m1-rak-kod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Rák köd (M1 / NGC 1952)", titleEn: "Crab Nebula (M1 / NGC 1952)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.11.06", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.11.06", meta: "70 x 60s (70 perc) | Gain: 60 | Duo-Band" },
+        { src: "kepek/ic1333-perzeusz-porkod.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Perzeusz sötét por-köd folyosója (IC 1333 / IC 348)", titleEn: "Perseus Molecular Cloud (IC 1333 / IC 348)", descHu: "Mód: EQ | Szűrő: Astro | Dátum: 2026.11.07", descEn: "Mode: EQ | Filter: Astro | Date: 2026.11.07", meta: "80 x 60s (80 perc) | Gain: 60 | Astro" },
+        { src: "kepek/ic405-langolo-csillag.jpg", mainCat: "melyeg", subCat: "diffuz", catHu: "Mély-ég / Diffúz ködök", catEn: "Deep-Sky / Diffuse Nebulae", titleHu: "Lángoló csillag köd (IC 405)", titleEn: "Flaming Star Nebula (IC 405)", descHu: "Mód: EQ | Szűrő: Duo-Band | Dátum: 2026.11.18", descEn: "Mode: EQ | Filter: Duo-Band | Date: 2026.11.18", meta: "100 x 60s (100 perc) | Gain: 60 | Duo-Band" }
+    ];
+    function toggleSpaceAudio() {
+        var audio = document.getElementById("bgMusic"), btn = document.getElementById("soundToggle");
+        if (!audio || !btn) return;
+        audio.volume = 0.25;
+        if (audio.paused) { audio.play(); btn.setAttribute("data-hu", "Hang: BE"); btn.setAttribute("data-en", "Sound: ON"); }
+        else { audio.pause(); btn.setAttribute("data-hu", "Hang: KI"); btn.setAttribute("data-en", "Sound: OFF"); }
+        btn.textContent = btn.getAttribute("data-" + currentLang);
+    }
+
+    function toggleLanguage() {
+        currentLang = (currentLang === "hu") ? "en" : "hu";
+        var btn = document.getElementById("langToggle");
+        if (btn) btn.textContent = (currentLang === "hu") ? "EN" : "HU";
+        document.querySelectorAll("[data-hu]").forEach(function(el) { var t = el.getAttribute("data-" + currentLang); if (t) el.textContent = t; });
+        var s = document.getElementById("searchInput");
+        if (s) s.placeholder = s.getAttribute("data-ph-" + currentLang);
+        renderGallery();
+        renderVideos();
+
+    }
+
+    function renderGallery() {
+        var grid = document.getElementById("galleryGrid");
+        if (!grid) return;
+        var sEl = document.getElementById("searchInput");
+        var query = sEl ? sEl.value.toLowerCase() : "";
+        grid.innerHTML = "";
+        photos.filter(function(p) {
+            if (activeMain !== "all" && p.mainCat !== activeMain) return false;
+            if (activeSub !== "all" && p.subCat !== activeSub) return false;
+            var txt = (p.titleHu + " " + p.titleEn + " " + p.descHu + " " + p.descEn + " " + p.meta).toLowerCase();
+            return txt.indexOf(query) !== -1;
+        }).forEach(function(photo) {
+            var title = (currentLang === "hu") ? photo.titleHu : photo.titleEn;
+            var cat = (currentLang === "hu") ? photo.catHu : photo.catEn;
+            var card = document.createElement("div");
+            card.className = "photo-card";
+            card.onclick = function() { openLightbox(photo); };
+            card.innerHTML = '<img src="' + photo.src + '" alt="' + title + '"><div class="photo-info"><div class="photo-cat">' + cat + '</div><div class="photo-title">' + title + '</div><div class="photo-meta">' + photo.meta + '</div></div>';
+            grid.appendChild(card);
+        });
+    }
+
+    function filterGallery(m, btn) {
+        activeMain = m; activeSub = "all";
+        document.querySelectorAll(".filter-group:nth-of-type(1) .filter-btn").forEach(function(b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        document.querySelectorAll(".sub-btn").forEach(function(b) {
+            b.classList.remove("active");
+            b.style.display = (m === "all" || b.classList.contains(m + "-sub")) ? "inline-block" : "none";
+        });
+        renderGallery();
+    }
+
+    function filterSub(s, btn) {
+        activeSub = (activeSub === s) ? "all" : s;
+        document.querySelectorAll(".sub-btn").forEach(function(b) { b.classList.remove("active"); });
+        if (activeSub !== "all") btn.classList.add("active");
+        renderGallery();
+    }
+
+    function openLightbox(p) {
+        var sEl = document.getElementById("searchInput");
+        var query = sEl ? sEl.value.toLowerCase() : "";
+        currentFiltered = photos.filter(function(item) {
+            if (activeMain !== "all" && item.mainCat !== activeMain) return false;
+            if (activeSub !== "all" && item.subCat !== activeSub) return false;
+            var txt = (item.titleHu + " " + item.titleEn + " " + item.descHu + " " + item.descEn + " " + item.meta).toLowerCase();
+            return txt.indexOf(query) !== -1;
+        });
+        currentLbIndex = currentFiltered.indexOf(p);
+        if (currentLbIndex === -1) currentLbIndex = 0;
+        showLbPhoto(currentFiltered[currentLbIndex]);
+        document.getElementById("lightbox").classList.add("open");
+    }
+
+    function showLbPhoto(p) {
+        if (!p) return;
+        document.getElementById("lbImg").src = p.src;
+        document.getElementById("lbCat").textContent = (currentLang === "hu") ? p.catHu : p.catEn;
+        document.getElementById("lbTitle").textContent = (currentLang === "hu") ? p.titleHu : p.titleEn;
+        document.getElementById("lbDesc").textContent = (currentLang === "hu") ? p.descHu : p.descEn;
+        document.getElementById("lbMeta").textContent = p.meta;
+    }
+
+    function changePhoto(dir) {
+        if (currentFiltered.length === 0) return;
+        currentLbIndex = (currentLbIndex + dir + currentFiltered.length) % currentFiltered.length;
+        showLbPhoto(currentFiltered[currentLbIndex]);
+    }
+
+    function closeLightbox(e, f) { if (f || e.target.id === "lightbox") document.getElementById("lightbox").classList.remove("open"); }
+
+    document.addEventListener("keydown", function(e) {
+        var lb = document.getElementById("lightbox");
+        if (!lb || !lb.classList.contains("open")) return;
+        if (e.key === "ArrowRight") changePhoto(1);
+        if (e.key === "ArrowLeft") changePhoto(-1);
+        if (e.key === "Escape") closeLightbox(e, true);
+    });
+
+    var hero = document.getElementById("heroSlideshow");
+    if (hero) {
+        photos.slice(0, 5).forEach(function(p, idx) {
+            var div = document.createElement("div");
+            div.className = "slide" + (idx === 0 ? " active" : "");
+            div.style.backgroundImage = "url('" + p.src + "')";
+            hero.prepend(div);
+        });
+        var slideIdx = 0;
+        setInterval(function() {
+            var slides = document.querySelectorAll(".slide");
+            if (slides.length > 1) {
+                slides[slideIdx].classList.remove("active");
+                slideIdx = (slideIdx + 1) % slides.length;
+                slides[slideIdx].classList.add("active");
+            }
+        }, 5500);
+    }
+
+    var canvas = document.getElementById("starfield");
+    if (canvas) {
+        var ctx = canvas.getContext("2d"), starColors = ["#ffffff", "#7dd3fc", "#fde047", "#d8b4fe", "#38bdf8"];
+        var stars = [], meteors = [], mouse = { x: -1000, y: -1000 };
+        var initStars = function() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight; stars = [];
+            for (var i = 0; i < 280; i++) stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, z: Math.random() * 2.5 + 0.6, r: Math.random() * 2.4 + 0.8, color: starColors[Math.floor(Math.random() * starColors.length)], twinkle: Math.random() * 6.28, speed: Math.random() * 0.35 + 0.1, bright: Math.random() > 0.82 });
+        };
+        var drawStars = function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var neb1 = ctx.createRadialGradient(canvas.width * 0.25, canvas.height * 0.3, 10, canvas.width * 0.25, canvas.height * 0.3, canvas.width * 0.5); neb1.addColorStop(0, "rgba(0, 240, 255, 0.22)"); neb1.addColorStop(1, "transparent"); ctx.fillStyle = neb1; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            var neb2 = ctx.createRadialGradient(canvas.width * 0.78, canvas.height * 0.65, 10, canvas.width * 0.78, canvas.height * 0.65, canvas.width * 0.55); neb2.addColorStop(0, "rgba(168, 85, 247, 0.24)"); neb2.addColorStop(1, "transparent"); ctx.fillStyle = neb2; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(function(st) {
+                st.y -= st.speed * st.z; st.twinkle += 0.04; if (st.y < 0) { st.y = canvas.height; st.x = Math.random() * canvas.width; }
+                ctx.save(); ctx.globalAlpha = 0.75 + Math.abs(Math.sin(st.twinkle)) * 0.25; ctx.fillStyle = st.color; ctx.shadowBlur = st.r * 7; ctx.shadowColor = st.color; ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.283); ctx.fill();
+                if (st.bright) { ctx.strokeStyle = st.color; ctx.lineWidth = 1; var sp = st.r * 5.5; ctx.beginPath(); ctx.moveTo(st.x - sp, st.y); ctx.lineTo(st.x + sp, st.y); ctx.moveTo(st.x, st.y - sp); ctx.lineTo(st.x, st.y + sp); ctx.stroke(); }
+                ctx.restore();
+                var dist = Math.hypot(st.x - mouse.x, st.y - mouse.y); if (dist < 160) { ctx.strokeStyle = "rgba(0, 240, 255, " + ((1 - dist / 160) * 0.65) + ")"; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(st.x, st.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+            });
+            if (Math.random() < 0.045 && meteors.length < 4) meteors.push({ x: Math.random() * canvas.width * 1.2, y: -20, vx: -(Math.random() * 8 + 7), vy: Math.random() * 6 + 5, alpha: 1 });
+            for (var i = meteors.length - 1; i >= 0; i--) {
+                var m = meteors[i]; m.x += m.vx; m.y += m.vy; m.alpha -= 0.012; ctx.save();
+                var grad = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * 11, m.y - m.vy * 11); grad.addColorStop(0, "rgba(255, 255, 255, " + m.alpha + ")"); grad.addColorStop(1, "rgba(0, 240, 255, 0)");
+                ctx.strokeStyle = grad; ctx.shadowBlur = 15; ctx.shadowColor = "#00f0ff"; ctx.lineWidth = 3.2; ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.vx * 11, m.y - m.vy * 11); ctx.stroke(); ctx.restore();
+                if (m.alpha <= 0) meteors.splice(i, 1);
+            }
+            requestAnimationFrame(drawStars);
+        };
+        window.addEventListener("mousemove", function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener("resize", initStars); initStars(); drawStars();
+    }
+    renderGallery();
+    var videos = [
+        { id: "916-keATMNk", titleHu: "Perseidák 2026 – Meteorok az éjszakai égbolton | Miskolc", titleEn: "Perseids 2026 – Meteors in the Night Sky | Miskolc", descHu: "Hullócsillagok és meteornyomok megörökítése a miskolci éjszakai égbolton.", descEn: "Capturing shooting stars and meteor trails over the night sky of Miskolc." },
+        { id: "KXkYssCXseQ", titleHu: "Napfoltok közelről – Két napfolt a Nap felszínén", titleEn: "Sunspots Up Close – Two Sunspots on the Solar Surface", descHu: "Részletgazdag napészlelés: két aktív napfoltcsoport a Nap fotoszférájában.", descEn: "Detailed solar observation featuring two active sunspot groups on the solar photosphere." },
+        { id: "mPW5SjID-9g", titleHu: "Sarló Hold – Átvonulás az éjszakai égbolton", titleEn: "Crescent Moon – Transit Across the Night Sky", descHu: "A keskeny holdsarló lassú, méltóságteljes vonulása a látómezőn keresztül.", descEn: "The slender crescent Moon slowly drifting across the telescope field of view." },
+        { id: "6GtNvVF2ZjM", titleHu: "Félhold részletei 10× digitális nagyítással – A Hold felszíne közelről", titleEn: "Half Moon Details at 10× Digital Zoom – Lunar Surface Up Close", descHu: "Extrém nagyítású felvétel a terminátor menti kráterekről és árnyékokról.", descEn: "High-magnification footage of craters and shadows along the lunar terminator." },
+        { id: "kZFQsNHBcp8", titleHu: "Félhold közelről – A Hold felszíne két részletben", titleEn: "Half Moon Up Close – The Lunar Surface in Two Parts", descHu: "A megvilágított holdfelszín két különböző régiójának részletes bemutatása.", descEn: "Detailed showcase of two distinct regions of the illuminated lunar surface." },
+        { id: "jVYJ2toKlLE", titleHu: "A Hold 3/4-e közelről – Részletek és látványos nagyítás", titleEn: "Waxing Gibbous Moon Up Close – Details & Spectacular Zoom", descHu: "Látványos közeli felvételek a növekvő Hold krátereiről és holdtengereiről.", descEn: "Spectacular close-up views of craters and lunar maria on the gibbous Moon." },
+        { id: "sAa7gWwBgtQ", titleHu: "Buck Moon – A vöröses Szarvas Hold közelről | 2 részlet", titleEn: "Buck Moon – The Reddish Full Moon Up Close | 2 Parts", descHu: "A horizont közelében vöröses árnyalatban ragyogó telihold két részletben.", descEn: "The full Buck Moon glowing in a reddish hue near the horizon, in two parts." },
+        { id: "dTpW4scp2TE", titleHu: "A Hold közelebbről – Részletek a Hold felszínéről", titleEn: "The Moon Up Close – Surface Details", descHu: "Részletgazdag felvételek a Hold krátereiről és hegyláncairól.", descEn: "Detailed footage of lunar craters and mountain ranges." },
+        { id: "pEyXdOupoHo", titleHu: "A Hold közelről – 10× és 3× nagyítás | Apollo 11 rádióforgalmazás", titleEn: "The Moon Up Close – 10× & 3× Magnification | Apollo 11 Radio Audio", descHu: "Kráterek és holdfelszíni részletek 3×-os és 10×-es nagyításban, az eredeti Apollo 11 rádióforgalmazásával.", descEn: "Craters and lunar surface details at 3× and 10× magnification with original Apollo 11 radio audio." }
+    ];
+    function renderVideos() {
+        var vGrid = document.getElementById("videoGrid");
+        if (!vGrid) return;
+        vGrid.innerHTML = "";
+        var ytDomain = "https://www.youtube.com";
+        videos.forEach(function(v) {
+            var title = (currentLang === "hu") ? v.titleHu : v.titleEn;
+            var desc = (currentLang === "hu") ? v.descHu : v.descEn;
+            var btnText = (currentLang === "hu") ? "Megtekintés a YouTube-on &#8599;" : "Watch on YouTube &#8599;";
+            var card = document.createElement("div");
+            card.className = "info-card";
+            card.innerHTML = '<div class="video-wrapper"><iframe src="' + ytDomain + '/embed/' + v.id + '" title="' + title + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>' +
+                             '<h3>' + title + '</h3>' +
+                             '<p style="margin-bottom: 1rem;">' + desc + '</p>' +
+                             '<a href="' + ytDomain + '/watch?v=' + v.id + '" target="_blank" class="social-link" style="background: rgba(255, 0, 0, 0.2); border-color: rgba(255, 0, 0, 0.6);">' + btnText + '</a>';
+            vGrid.appendChild(card);
+        });
+    }
+    renderVideos();
+
+</script>
+</body>
+</html>
